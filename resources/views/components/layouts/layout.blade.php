@@ -15,13 +15,23 @@
 </head>
 <body class="font-sans text-gray-900 min-h-screen bg-gray-100">
 @auth
-    <x-layouts.navigation />
+    <x-parts.navigation/>
 @endauth
 @guest
-    <x-layouts.navigation :show_navlinks="false" :show_profile="false" :show_logout="false"/>
+    <x-parts.navigation :show_navlinks="false" :show_profile="false" :show_logout="false"/>
 @endguest
-<main class="mx-auto max-w-7xl sm:px-6 lg:px-8 py-6 h-[calc(100vh-80px)]">
-    {{ $slot }}
-</main>
+<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 py-6 h-[calc(100vh-80px)]">
+    <!-- Header -->
+    @if(isset($title) && isset($description))
+        <x-parts.header>
+            <x-slot name="title">{{ $title }}</x-slot>
+            <x-slot name="description">{{ $description }}</x-slot>
+        </x-parts.header>
+    @endif
+    <!-- Main Content -->
+    <main class="h-full">
+        {{ $slot }}
+    </main>
+</div>
 </body>
 </html>

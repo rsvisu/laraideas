@@ -44,7 +44,7 @@
                     <div class="mt-4 flex justify-center gap-4 sm:mt-6">
                         <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
                            href="{{ route('ideas') }}">
-                            {{ __('Ideas') }}
+                            {{ __('Go') }}
                         </a>
                     </div>
                 </div>

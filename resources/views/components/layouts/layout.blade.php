@@ -20,7 +20,7 @@
 @guest
     <x-layouts.navigation :show_navlinks="false" :show_profile="false" :show_logout="false"/>
 @endguest
-<main class="mx-auto max-w-7xl px-4 py-6 h-[calc(100vh-80px)]">
+<main class="mx-auto max-w-7xl sm:px-6 lg:px-8 py-6 h-[calc(100vh-80px)]">
     {{ $slot }}
 </main>
 </body>

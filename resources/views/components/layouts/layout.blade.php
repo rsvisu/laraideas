@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head class="h-full">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-gray-900 min-h-screen bg-gray-100">
+<body class="font-sans text-base-content min-h-screen bg-base-200">
 @auth
     <x-parts.navigation/>
 @endauth
@@ -29,7 +29,7 @@
         </x-parts.header>
     @endif
     <!-- Main Content -->
-    <main class="h-full">
+    <main>
         {{ $slot }}
     </main>
 </div>

@@ -17,10 +17,19 @@ cmd = '/assets/start.sh'
 "start.sh" = '''
 #!/bin/bash
 
-# Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
 
-# Start supervisor
+chown -R www-data:www-data /app/storage /app/bootstrap/cache
+
+php artisan optimize:clear
+php artisan package:discover --ansi
+php artisan event:cache
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+php artisan migrate --force
+
 supervisord -c /etc/supervisord.conf -n
 '''
 
@@ -75,6 +84,7 @@ process_name=%(program_name)s_%(process_num)02d
 command=bash -c 'exec php /app/artisan queue:work --sleep=3 --tries=3 --max-time=3600'
 autostart=true
 autorestart=true
+user=www-data
 stopasgroup=true
 killasgroup=true
 numprocs=1 # To reduce memory/CPU usage, change to 2.

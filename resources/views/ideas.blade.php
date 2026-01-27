@@ -1,6 +1,6 @@
 <x-layouts.layout>
     <x-slot name="title">{{__('Ideas')}}</x-slot>
-    <x-slot name="description">{{__('View your ideas')}}</x-slot>
+    <x-slot name="description">{{__('View your or modify your ideas')}}</x-slot>
 
     <div>
         <article class="bg-white rounded-lg p-6 col-span-2">

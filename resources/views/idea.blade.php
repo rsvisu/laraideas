@@ -1,9 +1,9 @@
 <x-layouts.layout>
     <x-slot name="title">{{__('Idea')}}</x-slot>
-    <x-slot name="description">{{__('Create or modify your ideas')}}</x-slot>
+    <x-slot name="description">{{__('Create your ideas')}}</x-slot>
 
     <div>
-        <section class="grid grid-cols-2 gap-4 h-full">
+        <section class="h-full">
             <article class="bg-white rounded-lg p-6">
                 <h3 class="text-lg font-bold">{{__('Create idea')}}</h3>
                 <form action="#" method="POST">
@@ -21,9 +21,6 @@
                         <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">{{ __('Save') }}</button>
                     </div>
                 </form>
-            </article>
-            <article class="bg-white rounded-lg p-6">
-                <h3 class="text-lg font-bold">{{__('Modify idea')}}</h3>
             </article>
         </section>
     </div>

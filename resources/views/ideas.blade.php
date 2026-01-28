@@ -3,7 +3,7 @@
     <x-slot name="description">{{__('View your or modify your ideas')}}</x-slot>
 
     <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
-        @foreach($ideas as $idea)
+        @forelse($ideas as $idea)
             <!-- Card -->
             <article class="card w-full shadow bg-base-100">
                 <!-- Card content -->
@@ -28,6 +28,17 @@
                     </div>
                 </div>
             </article>
-        @endforeach
+        @empty
+            <div class="col-span-full">
+                <div class="alert bg-base-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         class="h-6 w-6 shrink-0 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>{{__('No ideas yet')}}</span>
+                </div>
+            </div>
+        @endforelse
     </section>
 </x-layouts.layout>

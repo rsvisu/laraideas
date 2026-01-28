@@ -10,7 +10,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/');
+    // return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Ideas

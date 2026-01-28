@@ -1,54 +1,55 @@
 <x-layouts.layout>
-    @guest
-        <section class="flex items-center justify-center h-full">
-            <div class="mx-auto w-screen max-w-7xl px-8 py-32">
+    <div class="hero bg-base-200 flex-1 flex items-center justify-center">
+        <div class="hero-content text-center">
+            <div class="mx-auto w-screen px-8 py-32">
                 <div class="mx-auto max-w-prose text-center">
-                    <h1 class="text-4xl font-bold text-gray-900">
-                        {{ __('Save your ideas easily and') }}
-                        <strong class="text-indigo-600"> {{ __('increase') }} </strong>
-                        {{ __('your productivity') }}
+                    <h1 class="text-4xl font-bold">
+                        @auth
+                            {{ __('Hello') }} <strong class="text-primary">{{ Auth::user()->name }}</strong>!
+                        @endauth
+                        @guest
+                            {{ __('Save your ideas easily and') }}
+                            <strong class="text-primary"> {{ __('increase') }} </strong>
+                            {{ __('your productivity') }}
+                        @endguest
                     </h1>
 
-                    <p class="mt-4 text-base text-pretty text-gray-700">
-                        {{ __('Create your account now or sign in.') }}
+                    <p class="mt-4 text-pretty">
+                        @auth
+                            {{ __('Save your ideas here') }}
+                        @endauth
+                        @guest
+                            {{ __('Create your account now or sign in.') }}
+                        @endguest
                     </p>
 
                     <div class="mt-4 flex justify-center gap-4 sm:mt-6">
-                        <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
-                           href="{{ route('register') }}">
-                            {{ __('Create account') }}
-                        </a>
+                        @auth
+                            <a class="btn btn-soft btn-primary btn-wide"
+                               href="{{ route('idea') }}">
+                                {{ __('Go') }}
 
-                        <a class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-                           href="{{ route('login') }}">
-                            {{ __('Sign in') }}
-                        </a>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M1 8a.5.5 0 0 1 .5-.5h11.793L9.146 3.354a.5.5 0 1 1 .708-.708l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                            </a>
+                        @endauth
+                        @guest
+                            <a class="btn btn-soft btn-primary"
+                               href="{{ route('register') }}">
+                                {{ __('Create account') }}
+                            </a>
+
+                            <a class="btn btn-soft"
+                               href="{{ route('login') }}">
+                                {{ __('Sign in') }}
+                            </a>
+                        @endguest
                     </div>
                 </div>
             </div>
-        </section>
-    @endguest
-
-    @auth
-        <section class="flex items-center justify-center h-full">
-            <div class="mx-auto w-screen max-w-7xl px-8 py-32">
-                <div class="mx-auto max-w-prose text-center">
-                    <h1 class="text-4xl font-bold text-gray-900">
-                        {{ __('Hello') }} <strong class="text-indigo-600">{{ Auth::user()->name }}</strong>!
-                    </h1>
-
-                    <p class="mt-4 text-base text-pretty text-gray-700">
-                        {{ __('Save your ideas here') }}
-                    </p>
-
-                    <div class="mt-4 flex justify-center gap-4 sm:mt-6">
-                        <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
-                           href="{{ route('idea') }}">
-                            {{ __('Go') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endauth
+        </div>
+    </div>
 </x-layouts.layout>

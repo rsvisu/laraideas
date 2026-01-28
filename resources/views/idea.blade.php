@@ -3,7 +3,7 @@
     <x-slot name="description">{{__('Create your ideas')}}</x-slot>
 
     <div>
-        <section class="h-full w-full">
+        <section class="w-full">
             <article class="card w-full shadow bg-base-100">
                 <div class="card-body">
                     <h3 class="card-title">{{__('Create idea')}}</h3>

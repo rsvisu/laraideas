@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head class="h-full">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,14 +13,15 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-base-content min-h-screen bg-base-200">
+<body class="flex flex-col font-sans text-base-content min-h-screen bg-base-200">
 @auth
     <x-parts.navigation/>
 @endauth
 @guest
     <x-parts.navigation :show_navlinks="false" :show_profile="false" :show_logout="false"/>
 @endguest
-<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 py-6 h-[calc(100vh-80px)]">
+<!-- Content -->
+<div class="flex-1 flex flex-col mx-auto w-full max-w-7xl sm:px-6 lg:px-8 py-6">
     <!-- Header -->
     @if(isset($title) && isset($description))
         <x-parts.header>
@@ -29,7 +30,7 @@
         </x-parts.header>
     @endif
     <!-- Main Content -->
-    <main>
+    <main class="flex-1 flex flex-col">
         {{ $slot }}
     </main>
 </div>

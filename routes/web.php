@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Pages
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -11,18 +13,22 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/idea', function () {
-    return view('idea');
-})->middleware(['auth', 'verified'])->name('idea');
+// Ideas
+Route::middleware('auth')->group(function () {
+    Route::get('/idea', [IdeaController::class, 'create'])->name('ideas.create');
+    Route::post('/idea', [IdeaController::class, 'store'])->name('ideas.store');
+    Route::delete('/idea/{id}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
+    Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
+});
 
-Route::get('/ideas', function () {
-    return view('ideas');
-})->middleware(['auth', 'verified'])->name('ideas');
 
+// Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+// Auth
 require __DIR__.'/auth.php';

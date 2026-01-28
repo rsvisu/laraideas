@@ -14,12 +14,12 @@
                 <!-- Navigation Links -->
                 @if($show_navlinks)
                     <div class="flex space-x-8 ms-10 items-center">
-                        <x-nav-link :href="route('idea')" :active="request()->routeIs('idea')">
+                        <x-nav-link :href="route('ideas.create')" :active="request()->routeIs('ideas.create')">
                             {{ __('Idea') }}
                         </x-nav-link>
                     </div>
                     <div class="flex space-x-8 ms-10 items-center">
-                        <x-nav-link :href="route('ideas')" :active="request()->routeIs('ideas')">
+                        <x-nav-link :href="route('ideas.index')" :active="request()->routeIs('ideas.index')">
                             {{ __('Ideas') }}
                         </x-nav-link>
                     </div>

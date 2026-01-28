@@ -7,7 +7,7 @@
             <article class="card w-full shadow bg-base-100">
                 <div class="card-body">
                     <h3 class="card-title">{{__('Create idea')}}</h3>
-                    <form action="#" method="POST">
+                    <form action="{{ route('ideas.store') }}" method="POST">
                         @csrf
                         <div class="my-4">
                             <label for="idea-title">{{__('Idea title')}}</label>
@@ -25,6 +25,9 @@
                     </form>
                 </div>
             </article>
+            @if(session('created') === true)
+                <p class="alert alert-success mt-5">{{__('Idea created succesfully')}}</p>
+            @endif
         </section>
     </div>
 </x-layouts.layout>

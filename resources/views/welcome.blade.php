@@ -26,7 +26,7 @@
                     <div class="mt-4 flex justify-center gap-4 sm:mt-6">
                         @auth
                             <a class="btn btn-soft btn-primary btn-wide"
-                               href="{{ route('idea') }}">
+                               href="{{ route('ideas.create') }}">
                                 {{ __('Go') }}
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

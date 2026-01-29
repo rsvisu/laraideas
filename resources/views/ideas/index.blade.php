@@ -5,7 +5,7 @@
     <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         @forelse($ideas as $idea)
             <!-- Card -->
-            <article class="card w-full shadow bg-base-100">
+            <article class="card w-full shadow-md bg-base-100 hover:shadow-lg transition-shadow">
                 <!-- Card content -->
                 <div class="card-body">
                     <!-- Card title -->

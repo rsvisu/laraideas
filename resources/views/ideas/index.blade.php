@@ -40,4 +40,7 @@
     @if(session('deleted'))
         <x-alert-success :message="__('Idea \'' . session('title') .'\' delete successfully')"/>
     @endif
+    @if(session('updated'))
+        <x-alert-success :message="__('Idea \'' . session('title') .'\' updated successfully')"/>
+    @endif
 </x-layouts.layout>

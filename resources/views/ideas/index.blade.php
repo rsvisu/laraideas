@@ -9,7 +9,10 @@
                 <!-- Card content -->
                 <div class="card-body">
                     <!-- Card title -->
-                    <h3 class="card-title">{{ $idea->title }}</h3>
+                    <h3 class="card-title break-all line-clamp-1"
+                        title="{{ $idea->title }}">
+                        {{ $idea->title }}
+                    </h3>
                     <!-- Card description -->
                     <p>{{ $idea->description }}</p>
                     <!-- Card actions -->

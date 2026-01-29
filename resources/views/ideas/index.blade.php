@@ -1,5 +1,5 @@
 <x-layouts.layout>
-    <x-slot name="title">{{__('Ideas')}}</x-slot>
+    <x-slot name="title">{{__('View Ideas')}}</x-slot>
     <x-slot name="description">{{__('View your or modify your ideas')}}</x-slot>
 
     <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
@@ -14,12 +14,8 @@
                     <p>{{ $idea->description }}</p>
                     <!-- Card actions -->
                     <div class="card-actions justify-end mt-4">
-                        <!-- TODO: Implementar update-->
-                        <form action="#" method="post" onsubmit="alert('Sin implementar'); return false">
-                            @csrf
-                            @method('update')
-                            <button class="btn btn-soft btn-primary btn-sm">{{__('Edit')}}</button>
-                        </form>
+                        <a href="{{ route('ideas.edit', $idea->id) }}"
+                           class="btn btn-soft btn-primary btn-sm">{{__('Edit')}}</a>
                         <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
                             @csrf
                             @method('delete')
@@ -41,4 +37,7 @@
             </div>
         @endforelse
     </section>
+    @if(session('deleted'))
+        <x-alert-success :message="__('Idea \'' . session('title') .'\' delete successfully')"/>
+    @endif
 </x-layouts.layout>

@@ -1,5 +1,5 @@
 <x-layouts.layout>
-    <x-slot name="title">{{__('Idea')}}</x-slot>
+    <x-slot name="title">{{__('Create Idea')}}</x-slot>
     <x-slot name="description">{{__('Create your ideas')}}</x-slot>
 
     <div>
@@ -19,15 +19,16 @@
                                       required></textarea>
                         </div>
                         <div class="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-200 pt-4">
-                            <button type="button" class="btn btn-soft btn-secondary">{{ __('Cancel') }}</button>
                             <button type="submit" class="btn btn-soft btn-primary">{{ __('Save') }}</button>
                         </div>
                     </form>
                 </div>
             </article>
-            @if(session('created') === true)
-                <p class="alert alert-success mt-5">{{__('Idea created succesfully')}}</p>
+            @if(session('success'))
+                <x-alert-success :message="__('Idea created successfully')"/>
             @endif
+            <!-- Errors -->
+            <x-inputs-errors/>
         </section>
     </div>
 </x-layouts.layout>

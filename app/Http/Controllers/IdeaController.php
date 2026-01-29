@@ -3,18 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class IdeaController extends Controller
 {
+
+    // Funciones
+
+    /**
+     * Find the idea by id and checks if is of the actual user
+     * @param $id
+     * @return Idea
+     */
+    private function findIdeaOrFail($id): Idea
+    {
+        // Recuperamos la id buscandola junto al usuario
+        $idea = Idea::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->first();  // Aqui se podria poner firstOrFail() y no hacer el if del abort()
+
+        // Si no hay idea devolvemos un 404 y terminamos
+        if (!$idea) {
+            abort(404);
+        }
+
+        // Si hay, la devolvemos
+        return $idea;
+    }
+
+    /**
+     * Finds the ideas of the actual user
+     * @return Collection
+     */
+    private function findIdeas(): Collection
+    {
+        $ideas = Idea::where('user_id', auth()->id())->get();
+        return $ideas;
+    }
+
+    // API
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         // Recuperar ideas del usuario actual
-        $ideas = Idea::where('user_id', auth()->id())->get();
-        return view('ideas', ['ideas' => $ideas]);
+        $ideas = $this->findIdeas();
+        // Se lo pasamos a la vista
+        return view('ideas.index', ['ideas' => $ideas]);
     }
 
     /**
@@ -23,7 +62,7 @@ class IdeaController extends Controller
     public function create()
     {
         // Devolver la lista para crear una idea
-        return view('idea');
+        return view('ideas.create');
     }
 
     /**
@@ -31,11 +70,15 @@ class IdeaController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: validar los datos
+        // Validamos los datos
+        $data = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string']
+        ]);
 
         // Recuperamos los campos para crear la idea
-        $title = $request->get('title');
-        $description = $request->get('description');
+        $title = $data['title'];
+        $description = $data['description'];
         $user_id = auth()->id();
 
         // Creamos la idea
@@ -48,7 +91,7 @@ class IdeaController extends Controller
         $idea->save();
 
         // Redirigimos de vuelta
-        return redirect()->back()->with('created', true);
+        return redirect()->route('ideas.create')->with('success', true);
     }
 
     /**
@@ -62,17 +105,45 @@ class IdeaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Idea $idea)
+    public function edit($id)
     {
-        //
+        // Recuperamos la idea
+        $idea = $this->findIdeaOrFail($id);
+
+        // Se lo pasamos a la vista
+        return view('ideas.edit', ['idea' => $idea]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idea $idea)
+    public function update(Request $request, $id)
     {
-        //
+        // Validamos los datos
+        $data = $request->validate([
+            'title' => ['string', 'nullable', 'max:255'],
+            'description' => ['string', 'nullable']
+        ]);
+
+        // Recuperamos la idea
+        $idea = $this->findIdeaOrFail($id);
+
+        // Guardamos el titulo
+        $old_title = $idea->title;
+
+        // Recorremos los atributos de data y si el valor
+        // no es null, actualizamos el valor del atributo
+        foreach ($data as $attribute => $value) {
+            if (!is_null($value)) {
+                $idea->$attribute = $value;
+            }
+        }
+
+        // Guardamos los cambios de la idea
+        $idea->save();
+
+        // Por ultimo redirigimos
+        return redirect()->route('ideas.index')->with('updated', true)->with('title', $old_title);
     }
 
     /**
@@ -80,20 +151,13 @@ class IdeaController extends Controller
      */
     public function destroy($id)
     {
-        // Recuperamos la id buscandola junto al usuario
-        $idea = Idea::where('id', $id)
-                    ->where('user_id', auth()->id())
-                    ->first();  // Aqui se podria poner firstOrFail() y no hacer el if del abort()
-
-        // Si no hay idea devolvemos un 404 y terminamos
-        if (!$idea) {
-            abort(404);
-        }
+        // Recuperamos la idea
+        $idea = $this->findIdeaOrFail($id);
 
         // Si hay, la borramos
         $idea->delete();
 
         // Por ultimo redirigimos
-        return redirect()->back()->with('success', true);
+        return redirect()->route('ideas.index')->with('deleted', true)->with('title', $idea->title);
     }
 }

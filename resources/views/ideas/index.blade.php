@@ -41,9 +41,13 @@
         @endforelse
     </section>
     @if(session('deleted'))
-        <x-alert-success :message="__('Idea \'' . session('title') .'\' delete successfully')"/>
+        <x-alert-success
+            :message="__('Idea \':idea\' deleted successfully', ['idea' => session('title')])"
+        />
     @endif
     @if(session('updated'))
-        <x-alert-success :message="__('Idea \'' . session('title') .'\' updated successfully')"/>
+        <x-alert-success
+            :message="__('Idea \':idea\' updated successfully', ['idea' => session('title')])"
+        />
     @endif
 </x-layouts.layout>

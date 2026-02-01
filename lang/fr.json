@@ -41,6 +41,8 @@
     "Edit": "Modifier",
     "Delete": "Supprimer",
     "No ideas yet": "Aucune idée pour le moment",
+    "Idea ':idea' deleted successfully": "L’idée ':idea' a été supprimée avec succès",
+    "Idea ':idea' updated successfully": "L’idée ':idea' a été mise à jour avec succès",
     "Delete Account": "Supprimer le compte",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Une fois votre compte supprimé, toutes ses ressources et données seront définitivement effacées. Avant de supprimer votre compte, veuillez télécharger les informations que vous souhaitez conserver.",
     "Are you sure you want to delete your account?": "Êtes-vous sûr de vouloir supprimer votre compte ?",

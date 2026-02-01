@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ Route::get('/dashboard', function () {
     return redirect('/');
     // return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Locale
+Route::get('/lang/{locale}', [LanguageController::class, 'setLanguage'])->name('lang.switch');
 
 // Ideas
 Route::middleware('auth')->group(function () {

@@ -7,7 +7,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('welcome') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                     </a>
                 </div>
 
@@ -25,27 +25,30 @@
                     </div>
                 @endif
             </div>
+            <div class="flex flex-row gap-5">
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    @if($show_profile)
+                        <a href="{{ route('profile.edit') }}"
+                           class="text-sm text-gray-500 hover:text-gray-700 transition">
+                            {{ __('Profile') }}
+                        </a>
+                    @endif
 
-            <!-- User Actions -->
-            <div class="flex items-center space-x-4">
-                @if($show_profile)
-                    <a href="{{ route('profile.edit') }}" class="text-sm text-gray-500 hover:text-gray-700 transition">
-                        {{ __('Profile') }}
-                    </a>
-                @endif
+                    @if($show_logout)
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                    class="text-sm text-gray-500 hover:text-gray-700 transition cursor-pointer">
+                                {{ __('Log Out') }}
+                            </button>
+                        </form>
+                    @endif
+                </div>
 
-                @if($show_logout)
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="text-sm text-gray-500 hover:text-gray-700 transition cursor-pointer">
-                            {{ __('Log Out') }}
-                        </button>
-                    </form>
-                @endif
+                <!-- Language Dropmenu -->
+                <x-lang.dropmenu/>
             </div>
-
-            <!-- Language Dropmenu -->
-            <x-lang.dropmenu/>
         </div>
     </div>
 </nav>

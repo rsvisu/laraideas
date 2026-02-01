@@ -8,7 +8,6 @@ Permite la gestion de ideas. Al crear una cuenta o iniciar sesion se da la posib
 - Visualizar las ideas creadas en tarjetas junto a botones para modificarlas o borrarlas.
 
 ## Por hacer
-- Instalar la librería de traducción de textos e implementar la funcionalidad de cambio de idioma. Nota: Los textos ya han sido preparados para la traduccion.
 - Implementar paginado de ideas en la pagina para visualizar las ideas.
 - Cambiar el proceso de actualizar una idea a la apertura de un modal donde se pueda modificar la idea directamente ahi.
 

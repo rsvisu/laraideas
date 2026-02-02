@@ -22,7 +22,7 @@
                             <textarea id="idea-description" name="description" class="textarea w-full"
                                       placeholder="{{ $idea->description }}"></textarea>
                         </div>
-                        <div class="mt-6 flex items-center justify-end gap-x-6 border-t border-gray-200 pt-4">
+                        <div class="mt-6 flex items-center justify-end gap-x-2 border-t border-gray-200 pt-4">
                             <a href="{{ route('ideas.index') }}"
                                class="btn btn-soft btn-secondary">{{ __('Cancel') }}</a>
                             <button type="submit" class="btn btn-soft btn-primary">{{ __('Save') }}</button>

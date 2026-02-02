@@ -17,12 +17,12 @@
                     <p>{{ $idea->description }}</p>
                     <!-- Card actions -->
                     <div class="card-actions justify-end mt-4">
-                        <a href="{{ route('ideas.edit', $idea->id) }}"
-                           class="btn btn-soft btn-primary btn-sm">{{__('Edit')}}</a>
                         <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
                             @csrf
                             @method('delete')
                             <button class="btn btn-soft btn-secondary btn-sm">{{__('Delete')}}</button>
+                            <a href="{{ route('ideas.edit', $idea->id) }}"
+                               class="btn btn-soft btn-primary btn-sm">{{__('Edit')}}</a>
                         </form>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ Permite la gestion de ideas. Al crear una cuenta o iniciar sesion se da la posib
 
 ## Por hacer
 - Implementar paginado de ideas en la pagina para visualizar las ideas.
+- Hacer que el idioma se guarde en la tabla users si el usuario esta autenticado en vez de en sesion. 
 - Cambiar el proceso de actualizar una idea a la apertura de un modal donde se pueda modificar la idea directamente ahi.
 
 ## Enlace

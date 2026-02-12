@@ -2,7 +2,21 @@
     <x-slot name="title">{{__('View Ideas')}}</x-slot>
     <x-slot name="description">{{__('View your or modify your ideas')}}</x-slot>
 
+    <!-- Alerts -->
+    <div class="mb-8">
+        @if(session('deleted'))
+            <x-alert-success
+                :message="__('Idea \':idea\' deleted successfully', ['idea' => session('title')])"
+            />
+        @endif
+        @if(session('updated'))
+            <x-alert-success
+                :message="__('Idea \':idea\' updated successfully', ['idea' => session('title')])"
+            />
+        @endif
+    </div>
     <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+        <!-- Cards -->
         @forelse($ideas as $idea)
             <!-- Card -->
             <article class="card w-full shadow-md bg-base-100 hover:shadow-lg transition-shadow">
@@ -40,14 +54,7 @@
             </div>
         @endforelse
     </section>
-    @if(session('deleted'))
-        <x-alert-success
-            :message="__('Idea \':idea\' deleted successfully', ['idea' => session('title')])"
-        />
-    @endif
-    @if(session('updated'))
-        <x-alert-success
-            :message="__('Idea \':idea\' updated successfully', ['idea' => session('title')])"
-        />
-    @endif
+    <div class="mt-8 gap-2 flex justify-center">
+        {{ $ideas->links() }}
+    </div>
 </x-layouts.layout>

@@ -10,7 +10,7 @@ use function PHPUnit\Framework\isEmpty;
 class IdeaController extends Controller
 {
 
-    // Funciones
+    // ==== Funciones ====
 
     /**
      * Find the idea by id and checks if is of the actual user
@@ -23,7 +23,6 @@ class IdeaController extends Controller
         $idea = Idea::where('id', $id)
             ->where('user_id', auth()->id())
             ->first();  // Aqui se podria poner firstOrFail() y no hacer el if del abort()
-
         // Si no hay idea devolvemos un 404 y terminamos
         if (!$idea) {
             abort(404);
@@ -39,11 +38,19 @@ class IdeaController extends Controller
      */
     private function findIdeas(): Collection
     {
-        $ideas = Idea::where('user_id', auth()->id())->get();
-        return $ideas;
+        return Idea::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
     }
 
-    // API
+    /**
+     * Finds and paginates the ideas of the actual user
+     * @return Collection
+     */
+    private function findAndPaginateIdeas($perPage)
+    {
+        return Idea::where('user_id', auth()->id())->orderBy('created_at', 'desc')->paginate($perPage);
+    }
+
+    // ==== CRUD ====
 
     /**
      * Display a listing of the resource.
@@ -51,7 +58,7 @@ class IdeaController extends Controller
     public function index()
     {
         // Recuperar ideas del usuario actual
-        $ideas = $this->findIdeas();
+        $ideas = $this->findAndPaginateIdeas(9);
         // Se lo pasamos a la vista
         return view('ideas.index', ['ideas' => $ideas]);
     }

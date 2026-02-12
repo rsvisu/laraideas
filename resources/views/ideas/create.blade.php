@@ -24,11 +24,14 @@
                     </form>
                 </div>
             </article>
-            @if(session('success'))
-                <x-alert-success :message="__('Idea created successfully')"/>
-            @endif
             <!-- Errors -->
             <x-inputs-errors/>
+            <!-- Alerts -->
+            <div class="mt-4">
+                @if(session('success'))
+                    <x-alert-success :message="__('Idea created successfully')"/>
+                @endif
+            </div>
         </section>
     </div>
 </x-layouts.layout>

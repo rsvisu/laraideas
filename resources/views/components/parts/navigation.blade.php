@@ -51,6 +51,9 @@
 
                 <!-- Language Dropmenu -->
                 <x-lang.dropmenu/>
+
+                <!-- Theme Switcher -->
+                <x-theme-switch/>
             </div>
         </div>
     </div>

@@ -7,6 +7,9 @@ export function initThemeToggle() {
     }
 
     const themeSwitch = document.getElementById("themeSwitch");
+    if (!themeSwitch) {
+        return;
+    }
 
     // Retiramos la animación al cargar para minimizar el efecto de que
     // justo se activa el toggle si la pagina esta en dark al cargar la pagina

@@ -1,6 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head class="h-full">
+    <!-- Script antes de que se renderice el cuerpo para evitar el flash de aplicar el tema -->
+    <script>
+        // Determinamos el tema inicial
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let savedTheme = localStorage.getItem("theme");
+        if (!savedTheme) {
+            savedTheme = isDarkMode ? "dark" : "light";
+        }
+
+        // Aplicamos el tema
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

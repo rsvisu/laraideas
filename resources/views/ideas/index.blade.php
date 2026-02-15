@@ -31,7 +31,8 @@
                     <p>{{ $idea->description }}</p>
                     <!-- Card actions -->
                     <div class="card-actions justify-end mt-4">
-                        <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
+                        <form action="{{ route('ideas.destroy', $idea->id) }}" method="post"
+                              onsubmit="confirmDelete(event)">
                             @csrf
                             @method('delete')
                             <button class="btn btn-soft btn-secondary btn-sm">{{__('Delete')}}</button>
@@ -54,7 +55,28 @@
             </div>
         @endforelse
     </section>
+    <!-- Pagination -->
     <div class="mt-8 gap-2 flex justify-center">
         {{ $ideas->links() }}
     </div>
+    <!-- Script para el confirmado de borrado -->
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+            Swal.fire({
+                theme: localStorage.getItem("theme"),
+                title: "{{__('Confirm deletion')}}",
+                text: "{{__('Are you sure you want to delete?')}}",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "{{ __('Yes, delete') }}"
+            }).then((response) => {
+                if (response.isConfirmed) {
+                    event.target.submit();
+                }
+            });
+        }
+    </script>
 </x-layouts.layout>

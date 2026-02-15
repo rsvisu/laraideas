@@ -1,6 +1,6 @@
 <x-layouts.layout>
     <x-slot name="title">{{__('Edit Idea')}}</x-slot>
-    <x-slot name="description">{{__('Edit \'' . $idea->title . '\' idea')}}</x-slot>
+    <x-slot name="description">{{__('Edit ":idea" idea', ['idea' => $idea->title])}}</x-slot>
 
     <div>
         <section class="w-full">

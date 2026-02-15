@@ -5,13 +5,16 @@
     <script>
         // Determinamos el tema inicial
         const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        let savedTheme = localStorage.getItem("theme");
-        if (!savedTheme) {
-            savedTheme = isDarkMode ? "dark" : "light";
+        let theme = localStorage.getItem("theme");
+        if (!theme) {
+            theme = isDarkMode ? "dark" : "light";
         }
 
+        // Guardamos el tema
+        localStorage.setItem("theme", theme);
+
         // Aplicamos el tema
-        document.documentElement.setAttribute("data-theme", savedTheme);
+        document.documentElement.setAttribute("data-theme", theme);
     </script>
 
     <meta charset="utf-8">

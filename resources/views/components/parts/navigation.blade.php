@@ -19,7 +19,7 @@
                         </x-nav-link>
                     </div>
                     <div class="flex space-x-8 ms-10 items-center">
-                        <x-nav-link :href="route('ideas.index')" :active="request()->routeIs('ideas.index')">
+                        <x-nav-link :href="route('ideas.index')" :active="request()->routeIs('ideas.index') || request()->routeIs('ideas.edit')">
                             {{ __('Ideas') }}
                         </x-nav-link>
                     </div>

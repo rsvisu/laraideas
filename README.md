@@ -13,7 +13,7 @@ Permite la gestion de ideas. Al crear una cuenta o iniciar sesion se da la posib
 | ✅      | Instalar la librería de traducción de textos e implementar la funcionalidad de cambio de idioma.                       |
 | ✅      | Implementar paginado de ideas en la pagina para visualizar las ideas.                                                  |
 | ✅      | Implementar boton para cambiar el tema entre light mode y dark mode.                                                   |
-| ✅      | Añadir confirmacion para la eliminacion de ideas con sweetalert                                                        |
+| ✅      | Añadir confirmacion para la eliminacion de ideas con sweetalert.                                                       |
 | ❌      | Hacer que el idioma se guarde en la tabla users si el usuario esta autenticado en vez de en sesion.                    |
 | ❌      | Cambiar el proceso de actualizar una idea a la apertura de un modal donde se pueda modificar la idea directamente ahi. |
 
@@ -22,7 +22,7 @@ Permite la gestion de ideas. Al crear una cuenta o iniciar sesion se da la posib
 Comando para exportar las cadenas de traducciones:  
 `php artisan translatable:export es,en,fr`
 
-Se usa el paquete `kkomelin/laravel-translatable-string-exporter` ([repositorio](https://github.com/kkomelin/laravel-translatable-string-exporter))
+Se usa el paquete `kkomelin/laravel-translatable-string-exporter` ([repositorio](https://github.com/kkomelin/laravel-translatable-string-exporter)).
 
 ## Enlace
 Puedes visualizar e interactuar con el proyecto en el siguiente enlace:

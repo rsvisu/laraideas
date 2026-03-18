@@ -24,6 +24,8 @@ Comando para exportar las cadenas de traducciones:
 
 Se usa el paquete `kkomelin/laravel-translatable-string-exporter` ([repositorio](https://github.com/kkomelin/laravel-translatable-string-exporter)).
 
+<!--
 ## Enlace
 Puedes visualizar e interactuar con el proyecto en el siguiente enlace:
 > https://laraideas-g8kkwg04gogowc44sgsk804g.karu.es
+-->
